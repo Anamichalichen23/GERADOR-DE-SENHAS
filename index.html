@@ -1,82 +1,107 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-br">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Gerador de Senhas</title>
-  <style>
-    body {
-      background-color: #121212;
-      color: #fff;
-      font-family: 'Courier New', Courier, monospace;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      margin: 0;
-    }
-
-    .container {
-      text-align: center;
-      background-color: #1e1e1e;
-      padding: 30px;
-      border-radius: 10px;
-      box-shadow: 0 0 15px #0f0f0f;
-      width: 300px;
-    }
-
-    .password-box {
-      display: flex;
-      margin-top: 20px;
-      gap: 10px;
-    }
-
-    #password {
-      flex: 1;
-      padding: 10px;
-      font-size: 1rem;
-      border: none;
-      border-radius: 5px;
-      background-color: #2a2a2a;
-      color: #fff;
-    }
-
-    button {
-      padding: 10px 15px;
-      background-color: #6200ee;
-      color: #fff;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-    }
-
-    button:hover {
-      background-color: #3700b3;
-    }
-
-    .dica {
-      font-size: 0.85rem;
-      color: #aaa;
-      margin-top: 15px;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gerador de Senha Aleatória</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f3f4f6;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            background-color: #fff;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            width: 320px;
+        }
+        h2 {
+            color: #333;
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+        label {
+            font-size: 16px;
+            margin-top: 15px;
+            display: block;
+            color: #555;
+        }
+        input[type="number"], input[type="text"] {
+            font-size: 16px;
+            padding: 12px;
+            width: 100%;
+            margin-top: 8px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            background-color: #f9f9f9;
+            box-sizing: border-box;
+        }
+        input[type="text"] {
+            background-color: #e8e8e8;
+            font-weight: bold;
+            color: #333;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            margin-top: 20px;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        .footer {
+            margin-top: 20px;
+            font-size: 14px;
+            color: #777;
+        }
+    </style>
 </head>
 <body>
-  <div class="container">
-    <h1>🔒 Gerador de Senhas</h1>
-    <div class="password-box">
-      <input type="text" id="password" readonly>
-      <button onclick="generatePassword()">Gerar</button>
+
+<div class="container">
+    <h2>Gerador de Senha Aleatória</h2>
+    <label for="comprimento">Comprimento da Senha:</label>
+    <input type="number" id="comprimento" value="12" min="8" max="32">
+    
+    <button onclick="gerarSenha()">Gerar Senha</button>
+    
+    <label for="senha">Senha Gerada:</label>
+    <input type="text" id="senha" readonly placeholder="Senha será exibida aqui">
+    
+    <div class="footer">
+        <p>Crie senhas fortes para sua segurança!</p>
     </div>
-    <p class="dica">Clique no botão para gerar uma senha segura.</p>
-  </div>
+</div>
 
-  <script>
-    function generatePassword() {
-      const chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()_+-=[]{}|;:,.<>?";
-      const length = 16;
-      let password = "";
+<script>
+    function gerarSenha() {
+        const comprimento = document.getElementById("comprimento").value || 12;
+        const caracteres = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()_-+=<>?";
+        let senha = "";
+        
+        for (let i = 0; i < comprimento; i++) {
+            const randomIndex = Math.floor(Math.random() * caracteres.length);
+            senha += caracteres.charAt(randomIndex);
+        }
 
-      for (let i = 0; i < length; i++) {
-        const randomChar = chars[Math.floor(Math.random() * chars*]()
+        // Exibe a senha gerada no campo de entrada
+        document.getElementById("senha").value = senha;
+    }
+</script>
 
+</body>
+</html>
